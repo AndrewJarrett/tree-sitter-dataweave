@@ -1,8 +1,38 @@
 module.exports = grammar({
 	name: "dataweave",
 
+  extras: $ => [
+    $.comment
+  ],
+
 	rules: {
-		source_file: $ => repeat($._expression),
+		source_file: $ => seq(
+      optional(seq($.header, $.separator)),
+      $.script
+    ),
+
+    header: $ => seq(
+      "%dw", $.version,
+      $._header_keyword
+    ),
+    version: $ => choice("1.0", "2.0"),
+    _header_keyword: $ => choice(
+      seq('output', $.mime_type),
+      seq('input', $.mime_type)
+    ),
+
+    mime_type: $ => seq(choice(
+      'text',
+      'audio',
+      'video',
+      'application',
+      'multipart',
+      'image'
+    ), '/', $.identifier),
+
+    separator: $ => '---',
+
+		script: $ => repeat1($._expression),
 
 		_expression: $ => choice(
 			$.identifier,

@@ -2,7 +2,144 @@
   "name": "dataweave",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "header"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "separator"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "script"
+        }
+      ]
+    },
+    "header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%dw"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "version"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_header_keyword"
+        }
+      ]
+    },
+    "version": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "1.0"
+        },
+        {
+          "type": "STRING",
+          "value": "2.0"
+        }
+      ]
+    },
+    "_header_keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "output"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mime_type"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "input"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mime_type"
+            }
+          ]
+        }
+      ]
+    },
+    "mime_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "text"
+            },
+            {
+              "type": "STRING",
+              "value": "audio"
+            },
+            {
+              "type": "STRING",
+              "value": "video"
+            },
+            {
+              "type": "STRING",
+              "value": "application"
+            },
+            {
+              "type": "STRING",
+              "value": "multipart"
+            },
+            {
+              "type": "STRING",
+              "value": "image"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "separator": {
+      "type": "STRING",
+      "value": "---"
+    },
+    "script": {
+      "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
         "name": "_expression"
@@ -74,8 +211,8 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

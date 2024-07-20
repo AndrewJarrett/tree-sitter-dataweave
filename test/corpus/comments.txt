@@ -4,7 +4,8 @@ Single-line comment
 // this is a comment
 ---|||
 (source_file
-	(comment))
+	(script
+		(comment)))
 
 ================|||
 Multi-line comment
@@ -17,5 +18,6 @@ Multi-line comment
 */
 ---|||
 (source_file
-	(comment))
+	(script
+		(comment)))
 
