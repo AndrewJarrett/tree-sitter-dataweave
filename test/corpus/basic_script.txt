@@ -1,0 +1,16 @@
+============|||
+Basic script
+============|||
+
+%dw 2.0
+output application/json
+---
+payload
+
+---|||
+
+(source_file
+	(number
+		(keyword
+			(separator
+				(identifier)))))
