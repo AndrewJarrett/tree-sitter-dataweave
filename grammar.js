@@ -38,7 +38,7 @@ module.exports = grammar({
 		_expression: $ => choice(
       $.object,
 			$.identifier,
-			$.number,
+			$._number,
       $.string,
 			$.comment
 			// TODO: handle more expressions
@@ -54,7 +54,11 @@ module.exports = grammar({
     value: $ => seq($._expression),
 
 		identifier: $ => /[a-zA-Z_]\w*/,
-		number: $ => /\d+/,
+
+		_number: $ => choice($.int, $.float),
+    int: $ => /\d+/,
+    float: $ => seq(/\d+/, '.', /\d*/),
+
     string: $ => choice(
       /"[^"]*"/, // TODO: handle escaped quotes inside string
       /'[^']*'/

@@ -53,18 +53,18 @@ output application/json
 		(object
 			(comment)
 			(key (identifier)) (value (string))
-			(key (identifier)) (value (number))
+			(key (identifier)) (value (int))
 			(key (identifier)) (value (float))
-			(key (identifier)) (value (number))
+			(key (identifier)) (value (int))
 			(key (identifier)) (value (date))
 			(key (identifier)) (value (time))
 			(key (identifier)) (value (datetime))
 			(key (identifier)) (value (bool))
 			(key (identifier)) (value (array
-				(number) (number) (number) (number) (number)
+				(int) (int) (int) (int) (int)
 			)))
 			(key (identifier)) (value (array
-				(number) (number) (string) (object
+				(int) (int) (string) (object
 					(key (value (string)))
 				)
 			))
@@ -73,9 +73,9 @@ output application/json
 			))
 			(key (identifier)) (value (object
 				(key (value (object
-					(key (value (number)))
-					(group (key (value (number)))) (if (bool))
-					(group (key (value (number)))) (if (bool))
+					(key (value (int)))
+					(group (key (value (int)))) (if (bool))
+					(group (key (value (int)))) (if (bool))
 				)))
 			))
 			(key (identifier) (value (null))

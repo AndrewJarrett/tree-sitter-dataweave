@@ -167,7 +167,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "number"
+          "name": "_number"
         },
         {
           "type": "SYMBOL",
@@ -261,9 +261,39 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_]\\w*"
     },
-    "number": {
+    "_number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "int"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        }
+      ]
+    },
+    "int": {
       "type": "PATTERN",
       "value": "\\d+"
+    },
+    "float": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d*"
+        }
+      ]
     },
     "string": {
       "type": "CHOICE",

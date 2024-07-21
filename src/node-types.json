@@ -1,5 +1,10 @@
 [
   {
+    "type": "float",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "header",
     "named": true,
     "fields": {},
@@ -36,6 +41,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "int",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "key",
@@ -104,11 +114,15 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "number",
+          "type": "int",
           "named": true
         },
         {
@@ -163,11 +177,15 @@
           "named": true
         },
         {
+          "type": "float",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "number",
+          "type": "int",
           "named": true
         },
         {
@@ -192,6 +210,10 @@
   },
   {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {
@@ -237,10 +259,6 @@
   {
     "type": "multipart",
     "named": false
-  },
-  {
-    "type": "number",
-    "named": true
   },
   {
     "type": "output",
