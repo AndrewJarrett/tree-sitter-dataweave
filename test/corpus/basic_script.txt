@@ -10,7 +10,7 @@ payload
 ---|||
 
 (source_file
-	(header (version) (output (mime-type)))
+	(header (version) (output (mime_type)))
 	(separator)
 	(script
 		(identifier)))

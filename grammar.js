@@ -1,9 +1,11 @@
 module.exports = grammar({
 	name: "dataweave",
 
-  extras: $ => [
-    $.comment
-  ],
+  //extras: $ => [
+  //  $.comment
+  //],
+
+  word: $ => $.identifier,
 
 	rules: {
 		source_file: $ => seq(
@@ -16,10 +18,9 @@ module.exports = grammar({
       $._header_keyword
     ),
     version: $ => choice("1.0", "2.0"),
-    _header_keyword: $ => choice(
-      seq('output', $.mime_type),
-      seq('input', $.mime_type)
-    ),
+    _header_keyword: $ => choice($.output, $.input),
+    output: $ => seq('output', $.mime_type),
+    input: $ => seq('input', $.mime_type),
 
     mime_type: $ => seq(choice(
       'text',
@@ -28,7 +29,7 @@ module.exports = grammar({
       'application',
       'multipart',
       'image'
-    ), '/', $.identifier),
+    ), '/', /[\w+-]+/),
 
     separator: $ => '---',
 

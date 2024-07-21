@@ -1,5 +1,6 @@
 {
   "name": "dataweave",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "SEQ",
@@ -65,30 +66,38 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "output"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mime_type"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "output"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "input"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mime_type"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "input"
+        }
+      ]
+    },
+    "output": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "output"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mime_type"
+        }
+      ]
+    },
+    "input": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "input"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mime_type"
         }
       ]
     },
@@ -129,8 +138,8 @@
           "value": "/"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "PATTERN",
+          "value": "[\\w+-]+"
         }
       ]
     },
@@ -211,8 +220,8 @@
   },
   "extras": [
     {
-      "type": "SYMBOL",
-      "name": "comment"
+      "type": "PATTERN",
+      "value": "\\s"
     }
   ],
   "conflicts": [],
