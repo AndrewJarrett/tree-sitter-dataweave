@@ -1,0 +1,88 @@
+============|||
+Basic script
+============|||
+
+%dw 2.0
+output application/json
+---
+payload
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(identifier)))
+
+========================|||
+Example script with types
+========================|||
+
+%dw 2.0
+output application/json
+---
+{
+  /*
+   * A multi-line
+   * comment here.
+   */
+  myString: "hello world",
+  myNumber: 123,
+  myFloatingPointNumber: 123.456,
+  myVeryBigNumber: 12341234134123412341234123,
+  myDate: |2018-12-07|,
+  myTime: |11:55:56|,
+  myDateTime: |2018-10-01T23:57:59-03:00|,
+  myBoolean: true,
+  myArray: [ 1, 2, 3, 5, 8],
+  myMixedArray: [ 1, 2, "blah", { hello: "there" } ],
+  myObjectKeyValuePair: { innerKey: "innerValue" },
+  myObjectWithConditionalField: { a : { b : 1, ( c : 2 ) if true, (d : 4) if false } },
+  myNull: null,
+  myBinary: "abcd1234123" as Binary
+  //A one-line comment here.
+}
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(object
+			(comment)
+			(key (value (string)))
+			(key (value (number)))
+			(key (value (float)))
+			(key (value (number)))
+			(key (value (date)))
+			(key (value (time)))
+			(key (value (datetime)))
+			(key (value (bool)))
+			(key (value (array
+				(number) (number) (number) (number) (number)
+			)))
+			(key (value (array
+				(number) (number) (string) (object
+					(key (value (string)))
+				)
+			)))
+			(key (value (object
+				(key (value (string)))
+			)))
+			(key (value (object
+				(key (value (object
+					(key (value (number)))
+					(group (key (value (number)))) (if (bool))
+					(group (key (value (number)))) (if (bool))
+				)))
+			)))
+			(key (value (null)))
+			(key (value (as (string) (type))))
+			(comment)
+		)
+	)
+)
+
+
