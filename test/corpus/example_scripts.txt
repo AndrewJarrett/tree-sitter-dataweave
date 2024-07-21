@@ -52,34 +52,34 @@ output application/json
 	(script
 		(object
 			(comment)
-			(key (value (string)))
-			(key (value (number)))
-			(key (value (float)))
-			(key (value (number)))
-			(key (value (date)))
-			(key (value (time)))
-			(key (value (datetime)))
-			(key (value (bool)))
-			(key (value (array
+			(key (identifier)) (value (string))
+			(key (identifier)) (value (number))
+			(key (identifier)) (value (float))
+			(key (identifier)) (value (number))
+			(key (identifier)) (value (date))
+			(key (identifier)) (value (time))
+			(key (identifier)) (value (datetime))
+			(key (identifier)) (value (bool))
+			(key (identifier)) (value (array
 				(number) (number) (number) (number) (number)
 			)))
-			(key (value (array
+			(key (identifier)) (value (array
 				(number) (number) (string) (object
 					(key (value (string)))
 				)
-			)))
-			(key (value (object
+			))
+			(key (identifier)) (value (object
 				(key (value (string)))
-			)))
-			(key (value (object
+			))
+			(key (identifier)) (value (object
 				(key (value (object
 					(key (value (number)))
 					(group (key (value (number)))) (if (bool))
 					(group (key (value (number)))) (if (bool))
 				)))
-			)))
-			(key (value (null)))
-			(key (value (as (string) (type))))
+			))
+			(key (identifier) (value (null))
+			(key (identifier) (value (as (string) (type)))
 			(comment)
 		)
 	)

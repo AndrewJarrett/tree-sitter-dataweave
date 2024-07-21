@@ -44,11 +44,14 @@ module.exports = grammar({
 			// TODO: handle more expressions
 		),
 
-    object: $ => seq('{', repeat($._pair), $._last_pair, '}'),
-    _pair: $ => seq($.key, $.value, ','),
-    _last_pair: $ => seq($.key, $.value),
-    key: $ => seq($.identifier, ':'),
-    value: $ => seq($._expression, ','),
+    object: $ => seq('{', $._members, '}'),
+    _members: $ => choice(
+      $._pair,
+      seq($._pair, ',', $._members)
+    ),
+    _pair: $ => seq($.key, ':', $.value),
+    key: $ => seq($.identifier),
+    value: $ => seq($._expression),
 
 		identifier: $ => /[a-zA-Z_]\w*/,
 		number: $ => /\d+/,
