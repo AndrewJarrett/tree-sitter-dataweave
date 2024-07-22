@@ -1,5 +1,55 @@
 [
   {
+    "type": "array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "object",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bool",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "date",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "datetime",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "float",
     "named": true,
     "fields": {}
@@ -63,6 +113,16 @@
     }
   },
   {
+    "type": "localdatetime",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "localtime",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "mime_type",
     "named": true,
     "fields": {}
@@ -102,6 +162,11 @@
     }
   },
   {
+    "type": "period",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "script",
     "named": true,
     "fields": {},
@@ -110,7 +175,23 @@
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "bool",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "date",
+          "named": true
+        },
+        {
+          "type": "datetime",
           "named": true
         },
         {
@@ -126,11 +207,31 @@
           "named": true
         },
         {
+          "type": "localdatetime",
+          "named": true
+        },
+        {
+          "type": "localtime",
+          "named": true
+        },
+        {
           "type": "object",
           "named": true
         },
         {
+          "type": "period",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "time",
+          "named": true
+        },
+        {
+          "type": "timezone",
           "named": true
         }
       ]
@@ -165,6 +266,16 @@
     "fields": {}
   },
   {
+    "type": "time",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "timezone",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "value",
     "named": true,
     "fields": {},
@@ -173,15 +284,15 @@
       "required": true,
       "types": [
         {
-          "type": "comment",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "bool",
           "named": true
         },
         {
           "type": "float",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -213,6 +324,10 @@
     "named": false
   },
   {
+    "type": "-",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
@@ -233,6 +348,46 @@
     "named": false
   },
   {
+    "type": "D",
+    "named": false
+  },
+  {
+    "type": "H",
+    "named": false
+  },
+  {
+    "type": "M",
+    "named": false
+  },
+  {
+    "type": "P",
+    "named": false
+  },
+  {
+    "type": "S",
+    "named": false
+  },
+  {
+    "type": "T",
+    "named": false
+  },
+  {
+    "type": "Y",
+    "named": false
+  },
+  {
+    "type": "Z",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "application",
     "named": false
   },
@@ -243,6 +398,10 @@
   {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "false",
+    "named": false
   },
   {
     "type": "identifier",
@@ -273,11 +432,19 @@
     "named": false
   },
   {
+    "type": "true",
+    "named": false
+  },
+  {
     "type": "video",
     "named": false
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

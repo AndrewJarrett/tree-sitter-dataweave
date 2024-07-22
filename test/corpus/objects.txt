@@ -1,0 +1,51 @@
+==============
+Basic object
+==============
+{
+	key: "value"
+}
+---
+(source_file
+	(script
+		(object
+			(key (identifier)) (value (string))
+		)
+	)
+)
+
+==========================
+Object with multiple keys
+==========================
+{
+	key: "value",
+	key2: 123
+}
+---
+(source_file
+	(script
+		(object
+			(key (identifier)) (value (string))
+			(key (identifier)) (value (int))
+		)
+	)
+)
+
+==========================
+Empty object
+==========================
+{}
+---
+(source_file
+	(script (object))
+)
+
+==========================
+Empty object (with spaces)
+==========================
+{
+
+	}
+---
+(source_file
+	(script (object))
+)

@@ -57,7 +57,7 @@ output application/json
 			(key (identifier)) (value (float))
 			(key (identifier)) (value (int))
 			(key (identifier)) (value (date))
-			(key (identifier)) (value (time))
+			(key (identifier)) (value (localtime))
 			(key (identifier)) (value (datetime))
 			(key (identifier)) (value (bool))
 			(key (identifier)) (value (array
