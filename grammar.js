@@ -117,7 +117,7 @@ module.exports = grammar({
       optional('Z') // The "Z" for "zero offset" is also optional
     )),
 
-    period: _ => seq('P',
+    period: _ => token(seq('P',
       optional(seq(/\d+/, 'Y')),
       optional(seq(/\d+/, 'M')),
       optional(seq(/\d+/, 'D')),
@@ -126,7 +126,7 @@ module.exports = grammar({
         optional(seq(/\d+/, 'M')),
         optional(seq(/\d+/, 'S')),
       ))
-    ),
+    )),
 
     time: _ => token(seq(
       /\d{2}:\d{2}:\d{2}/,

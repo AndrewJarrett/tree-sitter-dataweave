@@ -7,6 +7,117 @@ Basic date
 	(script (date))
 )
 
+================
+Basic period
+================
+|P1Y|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - P1M
+================
+|P1M|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - P1D
+================
+|P1D|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - P2Y2M2D
+================
+|P2Y2M2D|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - PT1H
+================
+|PT1H|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - PT1M
+================
+|PT1M|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - PT1S
+================
+|PT1S|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - P1YT1H
+================
+|P1YT1H|
+---
+(source_file
+	(script (period))
+)
+
+================
+Period - P1YT
+================
+|P1YT|
+---
+(source_file
+	(script (period))
+)
+
+====================
+Period error - P1
+:error
+====================
+|P1|
+---
+(source_file
+	(script (period))
+)
+
+====================
+Period error - PY
+:error
+====================
+|PY|
+---
+(source_file
+	(script (period))
+)
+
+====================
+Period error - PT1
+:error
+====================
+|PT1|
+---
+(source_file
+	(script (period))
+)
+
 ========================
 Basic localtime
 ========================

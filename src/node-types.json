@@ -150,11 +150,6 @@
     }
   },
   {
-    "type": "period",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "script",
     "named": true,
     "fields": {},
@@ -367,34 +362,6 @@
     "named": false
   },
   {
-    "type": "D",
-    "named": false
-  },
-  {
-    "type": "H",
-    "named": false
-  },
-  {
-    "type": "M",
-    "named": false
-  },
-  {
-    "type": "P",
-    "named": false
-  },
-  {
-    "type": "S",
-    "named": false
-  },
-  {
-    "type": "T",
-    "named": false
-  },
-  {
-    "type": "Y",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -457,6 +424,10 @@
   {
     "type": "output",
     "named": false
+  },
+  {
+    "type": "period",
+    "named": true
   },
   {
     "type": "separator",
