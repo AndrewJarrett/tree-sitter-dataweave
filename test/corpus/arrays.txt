@@ -1,0 +1,64 @@
+====================
+Basic array
+====================
+[1, 2, 3]
+---
+(source_file
+	(script (array (int) (int) (int)))
+)
+
+====================
+Empty array
+====================
+[]
+---
+(source_file
+	(script (array))
+)
+
+=======================
+Empty array with spaces
+=======================
+[
+
+ ]
+---
+(source_file
+	(script (array))
+)
+
+====================
+Array of strings
+====================
+["this", "is", "an", "array", "of", "strings"]
+---
+(source_file
+	(script (array (string) (string) (string) (string) (string) (string)))
+)
+
+====================
+Array of bools
+====================
+[true, false]
+---
+(source_file
+	(script (array (bool) (bool)))
+)
+
+====================
+Array of float
+====================
+[1.0, 2.0, 3.]
+---
+(source_file
+	(script (array (float) (float) (float)))
+)
+
+==============================
+Mixed array of different types
+==============================
+[1, 2.0, "3", false]
+---
+(source_file
+	(script (array (int) (float) (string) (bool)))
+)

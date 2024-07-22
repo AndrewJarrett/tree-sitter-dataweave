@@ -1,0 +1,138 @@
+============|||
+Basic script
+============|||
+
+%dw 2.0
+output application/json
+---
+payload
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(identifier)))
+
+========================|||
+Example smaller script
+========================|||
+
+%dw 2.0
+output application/json
+---
+{
+  /*
+   * A multi-line
+   * comment here.
+   */
+  myString: "hello world",
+  myNumber: 123,
+  myFloatingPointNumber: 123.456,
+  myVeryBigNumber: 12341234134123412341234123,
+  myDate: |2018-12-07|,
+  myTime: |11:55:56|,
+  myBoolean: true,
+  myArray: [ 1, 2, 3, 5, 8],
+  myMixedArray: [ 1, 2, "blah", { hello: "there" } ]
+  //A one-line comment here.
+}
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(object
+			(comment)
+			(key (identifier)) (value (string))
+			(key (identifier)) (value (int))
+			(key (identifier)) (value (float))
+			(key (identifier)) (value (int))
+			(key (identifier)) (value (date))
+			(key (identifier)) (value (localtime))
+			(key (identifier)) (value (bool))
+			(key (identifier)) (value (array
+				(int) (int) (int) (int) (int)
+			))
+			(key (identifier)) (value (array
+				(int) (int) (string) (object
+					(key (identifier)) (value (string))
+				))
+			)
+			(comment)
+		)
+	)
+)
+
+========================|||
+Example script with types
+========================|||
+
+%dw 2.0
+output application/json
+---
+{
+  /*
+   * A multi-line
+   * comment here.
+   */
+  myString: "hello world",
+  myNumber: 123,
+  myFloatingPointNumber: 123.456,
+  myVeryBigNumber: 12341234134123412341234123,
+  myDate: |2018-12-07|,
+  myTime: |11:55:56|,
+  myDateTime: |2018-10-01T23:57:59-03:00|,
+  myBoolean: true,
+  myArray: [ 1, 2, 3, 5, 8],
+  myMixedArray: [ 1, 2, "blah", { hello: "there" } ],
+  myObjectKeyValuePair: { innerKey: "innerValue" },
+  myObjectWithConditionalField: { a : { b : 1, ( c : 2 ) if true, (d : 4) if false } },
+  myNull: null,
+  myBinary: "abcd1234123" as Binary
+  //A one-line comment here.
+}
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(object
+			(comment)
+			(key (identifier)) (value (string))
+			(key (identifier)) (value (int))
+			(key (identifier)) (value (float))
+			(key (identifier)) (value (int))
+			(key (identifier)) (value (date))
+			(key (identifier)) (value (localtime))
+			(key (identifier)) (value (datetime))
+			(key (identifier)) (value (bool))
+			(key (identifier)) (value (array
+				(int) (int) (int) (int) (int)
+			))
+			(key (identifier)) (value (array
+				(int) (int) (string) (object
+					(key (identifier)) (value (string))
+				)
+			))
+			(key (identifier)) (value (object
+				(key (identifier)) (value (string))
+			))
+			(key (identifier)) (value (object
+				(key (identifier)) (value (object
+					(key (identifier)) (value (int))
+					(group (key (identifier)) (value (int))) (if (bool))
+					(group (key (identifier)) (value (int))) (if (bool))
+				))
+			))
+			(key (identifier)) (value (null))
+			(key (identifier)) (value (as (string) (type)))
+			(comment)
+		)
+	)
+)

@@ -1,0 +1,100 @@
+==============|||
+Basic object
+==============|||
+{
+	key: "value"
+}
+---|||
+(source_file
+	(script
+		(object
+			(key (identifier)) (value (string))
+		)
+	)
+)
+
+==========================|||
+Object with multiple keys
+==========================|||
+{
+	key: "value",
+	key2: 123
+}
+---|||
+(source_file
+	(script
+		(object
+			(key (identifier)) (value (string))
+			(key (identifier)) (value (int))
+		)
+	)
+)
+
+==========================|||
+Empty object
+==========================|||
+{}
+---|||
+(source_file
+	(script (object))
+)
+
+==========================|||
+Empty object (with spaces)
+==========================|||
+{
+
+	}
+---|||
+(source_file
+	(script (object))
+)
+
+============================|||
+Object with multi-line comment
+============================|||
+
+%dw 2.0
+output application/json
+---
+{
+  /*
+   * A multi-line
+   * comment here.
+   */
+}
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(object
+			(comment)
+		)
+	)
+)
+
+============================|||
+Object with single-line comment
+============================|||
+
+%dw 2.0
+output application/json
+---
+{
+	// This is a single-line comment
+}
+
+---|||
+
+(source_file
+	(header (version) (output (mime_type)))
+	(separator)
+	(script
+		(object
+			(comment)
+		)
+	)
+)

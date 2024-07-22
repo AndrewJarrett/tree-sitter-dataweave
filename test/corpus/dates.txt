@@ -1,0 +1,171 @@
+==============
+Basic date
+==============
+|2019-01-22|
+---
+(source_file
+	(script (date))
+)
+
+========================
+Basic localtime
+========================
+|11:00:00|
+---
+(source_file
+	(script (localtime))
+)
+
+=================================
+Basic localtime with "Z" timezone
+=================================
+|11:00:00Z|
+---
+(source_file
+	(script (localtime))
+)
+
+===========================
+LocalTime with milliseconds
+===========================
+|11:00:00.000|
+---
+(source_file
+	(script (localtime))
+)
+
+=====================================
+LocalTime with ms and timezone of "Z"
+=====================================
+|11:00:00.000Z|
+---
+(source_file
+	(script (localtime))
+)
+
+==============================
+Time with timezone offset +UTC
+==============================
+|11:00:00+0100|
+---
+(source_file
+	(script (time))
+)
+
+==============================
+Time with timezone offset -UTC
+==============================
+|11:00:00-0500|
+---
+(source_file
+	(script (time))
+)
+
+=====================================
+Time with ms and timezone offset +UTC
+=====================================
+|11:00:00.000+0300|
+---
+(source_file
+	(script (time))
+)
+
+=====================================
+Time with ms and timezone offset -UTC
+=====================================
+|11:00:00.000-0500|
+---
+(source_file
+	(script (time))
+)
+
+==============================
+Time can't have 'Z' and offset
+:error
+==============================
+|11:00:00Z-0500|
+---
+(source_file
+	(script (time))
+)
+
+==========================
+Basic timezone (-UTC)
+==========================
+|-0500|
+---
+(source_file
+	(script (timezone))
+)
+
+==========================
+Basic timezone (+UTC)
+==========================
+|+0600|
+---
+(source_file
+	(script (timezone))
+)
+
+==============================
+TimeZone with separator (-UTC)
+==============================
+|-06:30|
+---
+(source_file
+	(script (timezone))
+)
+
+==============================
+TimeZone with separator (+UTC)
+==============================
+|+02:00|
+---
+(source_file
+	(script (timezone))
+)
+
+==========================
+Basic localdatetime
+==========================
+|2019-01-22T11:00:00|
+---
+(source_file
+	(script (localdatetime))
+)
+
+==========================
+LocalDateTime with 'Z'
+==========================
+|2019-01-22T11:00:00Z|
+---
+(source_file
+	(script (localdatetime))
+)
+
+==========================
+LocalDateTime with ms
+==========================
+|2019-01-22T11:00:00.123|
+---
+(source_file
+	(script (localdatetime))
+)
+
+==============================
+LocalDateTime with ms and 'Z'
+==============================
+|2019-01-22T11:00:00.123Z|
+---
+(source_file
+	(script (localdatetime))
+)
+
+==========================
+Basic datetime
+==========================
+|2019-01-22T11:00:00-04:00|
+---
+(source_file
+	(script (datetime))
+)

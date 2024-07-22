@@ -1,0 +1,23 @@
+================|||
+Single-line comment
+================|||
+// this is a comment
+---|||
+(source_file
+	(script
+		(comment)))
+
+================|||
+Multi-line comment
+================|||
+/*
+* This is a comment and it
+* spans multiple lines.
+* That is why it is called
+* a multi-line comment.
+*/
+---|||
+(source_file
+	(script
+		(comment)))
+
