@@ -159,7 +159,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "object"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array"
         },
         {
           "type": "SYMBOL",
@@ -168,6 +172,10 @@
         {
           "type": "SYMBOL",
           "name": "_date_types"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "SYMBOL",
@@ -180,14 +188,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "object"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array"
-        },
-        {
-          "type": "SYMBOL",
           "name": "_number"
         },
         {
@@ -197,6 +197,10 @@
         {
           "type": "SYMBOL",
           "name": "bool"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "null"
         }
       ]
     },
@@ -229,8 +233,46 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_pair"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "comment"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_object_members"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_pair"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "comment"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "SEQ",
@@ -273,8 +315,25 @@
       "name": "identifier"
     },
     "value": {
-      "type": "SYMBOL",
-      "name": "_primitive"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_date_types"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_primitive"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array"
+        }
+      ]
     },
     "array": {
       "type": "SEQ",
@@ -306,14 +365,14 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_primitive"
+          "name": "_singleton"
         },
         {
           "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_primitive"
+              "name": "_singleton"
             },
             {
               "type": "STRING",
@@ -324,6 +383,23 @@
               "name": "_array_members"
             }
           ]
+        }
+      ]
+    },
+    "_singleton": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_primitive"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array"
         }
       ]
     },
@@ -408,6 +484,10 @@
         }
       ]
     },
+    "null": {
+      "type": "STRING",
+      "value": "null"
+    },
     "_date_types": {
       "type": "SEQ",
       "members": [
@@ -463,63 +543,100 @@
       "value": "\\d{4}-\\d{2}-\\d{2}"
     },
     "datetime": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_date"
-        },
-        {
-          "type": "STRING",
-          "value": "T"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_localtime"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_timezone"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\\d{4}-\\d{2}-\\d{2}"
+          },
+          {
+            "type": "STRING",
+            "value": "T"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\d{2}:\\d{2}:\\d{2}"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\.\\d{3}"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "[+-]\\d{2}"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ":"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\d{2}"
+          }
+        ]
+      }
     },
     "localdatetime": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_localdatetime"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "Z"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "_localdatetime": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_date"
-        },
-        {
-          "type": "STRING",
-          "value": "T"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_localtime"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\\d{4}-\\d{2}-\\d{2}"
+          },
+          {
+            "type": "STRING",
+            "value": "T"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\d{2}:\\d{2}:\\d{2}"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\.\\d{3}"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "Z"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "localtime": {
       "type": "SEQ",
@@ -812,34 +929,7 @@
     }
   ],
   "conflicts": [],
-  "precedences": [
-    [
-      {
-        "type": "STRING",
-        "value": "datetime"
-      },
-      {
-        "type": "STRING",
-        "value": "localdatetime"
-      },
-      {
-        "type": "STRING",
-        "value": "time"
-      },
-      {
-        "type": "STRING",
-        "value": "localtime"
-      },
-      {
-        "type": "STRING",
-        "value": "timezone"
-      },
-      {
-        "type": "STRING",
-        "value": "identifier"
-      }
-    ]
-  ],
+  "precedences": [],
   "externals": [],
   "inline": [],
   "supertypes": []

@@ -1,15 +1,7 @@
 module.exports = grammar({
 	name: "dataweave",
 
-  //extras: $ => [
-  //  $.comment
-  //],
-
   word: $ => $.identifier,
-
-  precedences: $ => [
-    ['datetime', 'localdatetime', 'time', 'localtime', 'timezone', 'identifier'],
-  ],
 
 	rules: {
 		source_file: $ => seq(
@@ -40,48 +32,53 @@ module.exports = grammar({
 		script: $ => repeat1($._expression),
 
 		_expression: $ => choice(
-			$.identifier,
+      $.object,
+      $.array,
       $._primitive,
       $._date_types,
-			$.comment
+			$.identifier,
+			$.comment,
 			// TODO: handle more expressions
 		),
 
     _primitive: $ => choice(
-      $.object,
-      $.array,
 			$._number,
       $.string,
       $.bool,
+      $.null,
     ),
 
     object: $ => seq('{', optional($._object_members), '}'),
     _object_members: $ => choice(
-      $._pair,
+      seq($.comment, optional($._object_members)),
+      seq($._pair, optional($.comment)),
       seq($._pair, ',', $._object_members)
     ),
     _pair: $ => seq($.key, ':', $.value),
     key: $ => $.identifier,
-    value: $ => $._primitive,
+    value: $ => choice($._date_types, $._primitive, $.object, $.array),
 
     array: $ => seq('[', optional($._array_members), ']'),
     _array_members: $ => choice(
-      $._primitive,
-      seq($._primitive, ',', $._array_members)
+      $._singleton,
+      seq($._singleton, ',', $._array_members)
     ),
+    _singleton: $ => choice($._primitive, $.object, $.array),
 
 		identifier: $ => /[a-zA-Z_]\w*/,
 
 		_number: $ => seq(optional('-'), choice($.int, $.float)),
-    int: $ => /\d+/,
-    float: $ => seq(/\d+/, '.', /\d*/),
+    int: _ => /\d+/,
+    float: _ => seq(/\d+/, '.', /\d*/),
 
-    string: $ => choice(
+    string: _ => choice(
       /"[^"]*"/, // TODO: handle escaped quotes inside string
       /'[^']*'/
     ),
 
-    bool: $ => choice('true', 'false'),
+    bool: _ => choice('true', 'false'),
+
+    null: _ => 'null',
 
     // https://docs.mulesoft.com/dataweave/latest/dataweave-types#dw_type_dates
     _date_types: $ => seq('|', choice(
@@ -97,10 +94,24 @@ module.exports = grammar({
     date: $ => $._date,
     _date: _ => /\d{4}-\d{2}-\d{2}/,
 
-    datetime: $ => seq($._date, 'T', $._localtime, $._timezone),
+    datetime: _ => token(seq(
+      /\d{4}-\d{2}-\d{2}/,
+      'T',
+      /\d{2}:\d{2}:\d{2}/,
+      optional(/\.\d{3}/),
+      /[+-]\d{2}/,
+      optional(':'),
+      /\d{2}/
+    )),
 
-    localdatetime: $ => seq($._localdatetime, optional('Z')),
-    _localdatetime: $ => seq($._date, 'T', $._localtime),
+    localdatetime: $ => token(seq(
+      /\d{4}-\d{2}-\d{2}/,
+      'T',
+      /\d{2}:\d{2}:\d{2}/,
+      optional(/\.\d{3}/),
+      optional('Z')
+    )),
+    //_localdatetime: $ => seq($._date, 'T', $._localtime),
 
     localtime: $ => seq($._localtime, optional('Z')),
     _localtime: $ => seq(

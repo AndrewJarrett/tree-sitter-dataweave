@@ -24,6 +24,10 @@
           "named": true
         },
         {
+          "type": "null",
+          "named": true
+        },
+        {
           "type": "object",
           "named": true
         },
@@ -41,11 +45,6 @@
   },
   {
     "type": "date",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "datetime",
     "named": true,
     "fields": {}
   },
@@ -113,11 +112,6 @@
     }
   },
   {
-    "type": "localdatetime",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "localtime",
     "named": true,
     "fields": {}
@@ -135,6 +129,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "key",
           "named": true
@@ -215,6 +213,10 @@
           "named": true
         },
         {
+          "type": "null",
+          "named": true
+        },
+        {
           "type": "object",
           "named": true
         },
@@ -292,6 +294,14 @@
           "named": true
         },
         {
+          "type": "date",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -300,11 +310,35 @@
           "named": true
         },
         {
+          "type": "localdatetime",
+          "named": true
+        },
+        {
+          "type": "localtime",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
           "type": "object",
           "named": true
         },
         {
+          "type": "period",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "time",
+          "named": true
+        },
+        {
+          "type": "timezone",
           "named": true
         }
       ]
@@ -400,6 +434,10 @@
     "named": true
   },
   {
+    "type": "datetime",
+    "named": true
+  },
+  {
     "type": "false",
     "named": false
   },
@@ -416,8 +454,16 @@
     "named": false
   },
   {
+    "type": "localdatetime",
+    "named": true
+  },
+  {
     "type": "multipart",
     "named": false
+  },
+  {
+    "type": "null",
+    "named": true
   },
   {
     "type": "output",
