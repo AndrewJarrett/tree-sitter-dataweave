@@ -44,11 +44,6 @@
     "fields": {}
   },
   {
-    "type": "date",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "float",
     "named": true,
     "fields": {}
@@ -112,11 +107,6 @@
     }
   },
   {
-    "type": "localtime",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "mime_type",
     "named": true,
     "fields": {}
@@ -158,11 +148,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "period",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "script",
@@ -264,11 +249,6 @@
   },
   {
     "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "time",
     "named": true,
     "fields": {}
   },
@@ -382,38 +362,6 @@
     "named": false
   },
   {
-    "type": "D",
-    "named": false
-  },
-  {
-    "type": "H",
-    "named": false
-  },
-  {
-    "type": "M",
-    "named": false
-  },
-  {
-    "type": "P",
-    "named": false
-  },
-  {
-    "type": "S",
-    "named": false
-  },
-  {
-    "type": "T",
-    "named": false
-  },
-  {
-    "type": "Y",
-    "named": false
-  },
-  {
-    "type": "Z",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -431,6 +379,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "date",
     "named": true
   },
   {
@@ -458,6 +410,10 @@
     "named": true
   },
   {
+    "type": "localtime",
+    "named": true
+  },
+  {
     "type": "multipart",
     "named": false
   },
@@ -470,12 +426,20 @@
     "named": false
   },
   {
+    "type": "period",
+    "named": true
+  },
+  {
     "type": "separator",
     "named": true
   },
   {
     "type": "text",
     "named": false
+  },
+  {
+    "type": "time",
+    "named": true
   },
   {
     "type": "true",

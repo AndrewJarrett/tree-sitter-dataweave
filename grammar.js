@@ -91,8 +91,7 @@ module.exports = grammar({
       $.timezone
     ), '|'),
 
-    date: $ => $._date,
-    _date: _ => /\d{4}-\d{2}-\d{2}/,
+    date: _ => /\d{4}-\d{2}-\d{2}/,
 
     datetime: _ => token(seq(
       /\d{4}-\d{2}-\d{2}/,
@@ -104,22 +103,21 @@ module.exports = grammar({
       /\d{2}/
     )),
 
-    localdatetime: $ => token(seq(
+    localdatetime: _ => token(seq(
       /\d{4}-\d{2}-\d{2}/,
       'T',
       /\d{2}:\d{2}:\d{2}/,
       optional(/\.\d{3}/),
       optional('Z')
     )),
-    //_localdatetime: $ => seq($._date, 'T', $._localtime),
 
-    localtime: $ => seq($._localtime, optional('Z')),
-    _localtime: $ => seq(
+    localtime: _ => token(seq(
       /\d{2}:\d{2}:\d{2}/,
-      optional(seq('.', /\d{3}/)) // Milliseconds (optional)
-    ),
+      optional(seq('.', /\d{3}/)), // Milliseconds (optional)
+      optional('Z') // The "Z" for "zero offset" is also optional
+    )),
 
-    period: $ => seq('P',
+    period: _ => token(seq('P',
       optional(seq(/\d+/, 'Y')),
       optional(seq(/\d+/, 'M')),
       optional(seq(/\d+/, 'D')),
@@ -128,11 +126,14 @@ module.exports = grammar({
         optional(seq(/\d+/, 'M')),
         optional(seq(/\d+/, 'S')),
       ))
-    ),
+    )),
 
-    time: $ => seq($._localtime, $._timezone),
-    timezone: $ => $._timezone,
-    _timezone: _ => seq(/[+-]\d{2}/, optional(':'), /\d{2}/),
+    time: _ => token(seq(
+      /\d{2}:\d{2}:\d{2}/,
+      optional(seq('.', /\d{3}/)), // Milliseconds (optional)
+      /[+-]\d{2}/, optional(':'), /\d{2}/ // Timezone
+    )),
+    timezone: _ => seq(/[+-]\d{2}/, optional(':'), /\d{2}/),
 
 		// http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
 		comment: $ => token(choice(
