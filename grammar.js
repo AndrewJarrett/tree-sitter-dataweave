@@ -29,7 +29,30 @@ module.exports = grammar({
 
     separator: $ => '---',
 
-		script: $ => repeat1($._expression),
+		script: $ => repeat1($._statement),
+
+    _statement: $ => choice(
+      $._expression,
+      $.if_statement,
+    ),
+
+    if_statement: $ => prec.right(seq(
+      'if',
+      $.condition,
+      $.consequence,
+      repeat($.else_if_clause),
+      $.else_clause, // Else clause is required
+    )),
+
+    condition: $ => seq('(', $._expression, ')'),
+    consequence: $ => $._statement,
+
+    else_if_clause: $ => prec.right(seq(
+      'else', 'if',
+      $.condition,
+      $.consequence
+    )),
+    else_clause: $ => seq('else', $._statement),
 
 		_expression: $ => choice(
       $.object,

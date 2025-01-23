@@ -1,0 +1,101 @@
+=====================
+If statement
+=====================
+if (true) 1 else 0
+---
+(source_file
+	(script (if_statement
+		(condition (bool))
+		(consequence (int))
+		(else_clause (int))
+	))
+)
+
+=====================
+If with identifiers
+=====================
+if (x) y else z
+---
+(source_file
+	(script (if_statement
+		(condition (identifier))
+		(consequence (identifier))
+		(else_clause (identifier))
+	))
+)
+
+=====================
+If with else if
+=====================
+if (x) y else if (z) a else b
+---
+(source_file
+	(script (if_statement
+		(condition (identifier))
+		(consequence (identifier))
+		(else_clause
+			(if_statement
+				(condition (identifier))
+				(consequence (identifier))
+				(else_clause (identifier))
+			)
+		)
+	))
+)
+
+=====================
+If with multiple else ifs
+=====================
+if (x) y else if (z) a else if (b) c else if (d) e else f
+---
+(source_file
+	(script (if_statement
+		(condition (identifier))
+		(consequence (identifier))
+		(else_clause
+			(if_statement
+				(condition (identifier))
+				(consequence (identifier))
+				(else_clause
+					(if_statement
+						(condition (identifier))
+						(consequence (identifier))
+						(else_clause
+							(if_statement
+								(condition (identifier))
+								(consequence (identifier))
+								(else_clause (identifier))
+							)
+						)
+					)
+				)
+			)
+		)
+	))
+)
+
+=============================
+If fails without else clause
+:error
+=============================
+if (true) 1
+---
+(source_file
+	(script (if_statement
+		(condition (bool))
+		(consequence (int))
+	))
+)
+
+=============================
+If and else if fails without else clause
+:error
+=============================
+if (true) 1 else if (false) 0
+---
+(source_file
+	(script (if_statement
+		(condition (bool))
+		(consequence (int))
+	))
+)
